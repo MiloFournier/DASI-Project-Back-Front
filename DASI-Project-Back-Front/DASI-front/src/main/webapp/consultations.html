@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Consultations</title>
+        <!-- Librairie Javascript: jQuery (v3.4.1) -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <style>
+            body {
+              background-color: white;
+            }
+
+            h1 {
+              color: black;
+              margin-left: 40px;
+            }
+            #champ-login {
+                text-align: center;
+                color: white;
+                background-color: #78448c;
+                box-sizing: border-box;
+                border: 0px;
+                border-radius: 7px;
+                height: 40px;
+                width: 200px;
+                transition: width 0.4s ease-in-out;
+            }
+            #champ-login:focus {
+                background-color: #a462bf;
+                width: 250px;
+            }
+            #champ-password {
+                text-align: center;
+                color: white;
+                background-color: #78448c;
+                box-sizing: border-box;
+                border: 0px;
+                border-radius: 7px;
+                height: 40px;
+                width: 200px;
+                transition: width 0.4s ease-in-out;
+            }
+            #champ-password:focus {
+                background-color: #a462bf;
+                width: 250px;
+            }
+            #div1 {
+                text-align: center;
+            }
+            #identi {
+                font-size: 12px;
+                color: #a462bf;
+                margin-bottom: -18px;
+            }
+            #mdp {
+                font-size: 12px;
+                color: #a462bf;
+                margin-bottom: -18px;
+                margin-top: 0px;
+            }
+            #bouton-connexion {
+                background-color: #a462bf;
+                height: 40px;
+                width: 200px;
+                border: 0px;
+                border-radius: 7px;
+                color: white;
+                cursor:pointer;
+            }
+            #bouton-connexionC {
+                background-color: #a462bf;
+                height: 40px;
+                width: 200px;
+                border: 0px;
+                border-radius: 7px;
+                color: white;
+                cursor:pointer;
+            }
+            #notification {
+                text-align: center;
+                margin-bottom: 0px;
+                font: small-caps 24px/1 sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+         <div id="header">
+            <p id="logoP" onClick="window.location.href='index.html'">
+                <span id="logo">predict'if</span>
+            </p>
+            <div id="histoire">
+                <button onClick="window.location.href='fenetreClient.html#notreHistoire'" id="hist">Notre histoire</button>
+                <button onClick="window.location.href='fenetreClient.html#NosMediums'" id="med">Nos mediums</button>
+            </div>
+                <!--
+                <button id="inscription" onClick="window.location.href='inscriptionClient.html'">S'inscrire</button>
+                <button id="connexion" onClick="window.location.href='login.html'">Se connecter</button>
+                -->
+        </div>
+        
+        <div style="text-align:center;">
+            <br>
+            <input type="text" id="txt" size="40" placeholder="Entrez le nom d'un medium">
+            <button id="buttonText" style="background-color: #a462bf; color: white; border-radius: 12px; border: none; cursor: pointer; height: 30px; width: 175px;">Rechercher médium</button>
+        </div>
+        
+        
+        <ul id="listeMediums">
+            
+        </ul>
+        <br>
+        <br>
+        <br>
+        
+        
+        
+         <div id="footer">
+            <br/><br/>
+            <hr id= "ligne">
+            <p style="position:relative;">
+                <label id="logoBas">predict'if</label>
+                <div id="contact">
+                    <p>126 Rue Jean Mace</p>
+                    <label>0464511725</label>
+                    <p>Reseaux sociaux :</p>
+                </div>
+                
+                <br/>
+                <hr id= "ligne">
+                <p>
+                    <label style="cursor:pointer; margin-left:300px;" onclick="window.location.href='fenetreClient.html#notreHistoire'">NOTRE HISTOIRE</label>
+                    <label style="margin-left:75px;">CONTACTEZ-NOUS</label>
+                    <label style="margin-left:75px;">POLITIQUE DE CONFIDENTIALITE</label>
+                    <label style="margin-left:100px;">CGU</label>
+
+                </p>
+            </div>
+        
+        
+        
+        <!-- Lien vers l'accueil -->
+        <!-- <p><a href="index.html">Retour à la page d'Accueil</a></p> -->
+
+        <script>
+            $(document).ready( function () {
+                var champNom = "null";
+                $.ajax({
+                        url: './Servlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'consultations',
+                            champNom: champNom
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        console.log('Response',response); // LOG dans Console Javascript
+                        if (response.etat === "true") {
+                            //$('#notification').html("Connexion de " + response.utilisateur.nom + " " + response.utilisateur.prenom + " (ID "+ response.utilisateur.id +")");  // Message pour le paragraphe de notification
+                            // TODO: afficher les informations du client dans la notification
+                            let mediums = response.mediums;
+                            $('#listeMediums').empty();
+                            
+                            
+                            
+                            $.each(mediums, function(index, medium) {
+                                $('#listeMediums').append(
+                                        '<div id="carte" style="background: linear-gradient(to bottom, #DDC3E7, #A07FB2); width: 500px; margin: 0 auto; height: 250px; border-radius: 50px; color: black; text-align:center;">' +
+                                        '<p style="text-align:center; padding-top: 75px;" id="denominationMedium">'+ medium.denominationMedium +
+                                        '</p>' +
+                                        '<p style="text-align:center;" id="genre">'+ medium.genreMedium +
+                                        '</p>' +
+                                        '<p style="text-align:center;" id="pres">'+ medium.presentationMedium +
+                                        '</p>' +
+                                        '<button data-medium="' + medium.denominationMedium +'">Prendre rendez-vous</button>' +
+                                        '</div>'
+                                        );
+                            });
+                            // Exemple: Connexion de Ada Lovelace (ID 1)
+                        }
+                        else {
+                            //$('#notification').html("Erreur de Connexion"); // Message pour le paragraphe de notification
+                            $('#denominationMedium').html("Erreur");
+                        }
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+
+                    });
+                    
+                    
+                    
+                    $('#buttonText').on( 'click', function () {
+                        
+                    var champNom = $('#txt').val();
+                        
+                    $.ajax({
+                            url: './Servlet',
+                            method: 'POST',
+                            data: {
+                                todo: 'consultations',
+                                champNom: champNom
+                            },
+                            dataType: 'json'
+                        })
+                        .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                            console.log('Response',response); // LOG dans Console Javascript
+                            if (response.etat === "true") {
+                                //$('#notification').html("Connexion de " + response.utilisateur.nom + " " + response.utilisateur.prenom + " (ID "+ response.utilisateur.id +")");  // Message pour le paragraphe de notification
+                                // TODO: afficher les informations du client dans la notification
+                                let mediums = response.mediums;
+                            $('#listeMediums').empty();
+                            
+                            $.each(mediums, function(index, medium) {
+                                $('#listeMediums').append(
+                                        '<br><br><br><br><br><br><br><br><br>' + 
+                                        '<div id="carte" style="background: linear-gradient(to bottom, #DDC3E7, #A07FB2); width: 500px; margin: 0 auto; height: 250px; border-radius: 50px; color: black; text-align:center;">' +
+                                        '<p style="text-align:center; padding-top: 75px;" id="denominationMedium">'+ medium.denominationMedium +
+                                        '</p>' +
+                                        '<p style="text-align:center;" id="genre">'+ medium.genreMedium +
+                                        '</p>' +
+                                        '<p style="text-align:center;" id="pres">'+ medium.presentationMedium +
+                                        '</p>' +
+                                        '<button data-medium="' + medium.denominationMedium +'">Prendre rendez-vous</button>' +
+                                        '</div>' +
+                                        '<br><br><br><br><br><br><br><br><br>'
+                                        );
+                            });
+                                // Exemple: Connexion de Ada Lovelace (ID 1)
+                            }
+                            else {
+                                //$('#notification').html("Erreur de Connexion"); // Message pour le paragraphe de notification
+                                $('#denominationMedium').html("Erreur, aucun médium ne porte ce nom");
+                            }
+                        })
+                        .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                            console.log('Error',error); // LOG dans Console Javascript
+                            alert("Erreur lors de l'appel AJAX");
+                        })
+                        .always( function () { // Fonction toujours appelée
+
+                        });
+                    });
+                    
+                    
+            
+            $('#listeMediums').on( 'click', 'button', function () {
+                var idMedium = $(this).attr('data-medium');
+                        $.ajax({
+                        url: './Servlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'rdv',
+                            idMedium: idMedium
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        console.log('Response',response); // LOG dans Console Javascript
+                        if (response.etat === "true") {
+                            window.location.replace("fenetreClient.html");
+                            //$('#notification').html("Connexion de " + response.utilisateur.nom + " " + response.utilisateur.prenom + " (ID "+ response.utilisateur.id +")");  // Message pour le paragraphe de notification
+                            // TODO: afficher les informations du client dans la notification
+                            
+                            // Exemple: Connexion de Ada Lovelace (ID 1)
+                        }
+                        else {
+                            //$('#notification').html("Erreur de Connexion"); // Message pour le paragraphe de notification
+                            
+                        }
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

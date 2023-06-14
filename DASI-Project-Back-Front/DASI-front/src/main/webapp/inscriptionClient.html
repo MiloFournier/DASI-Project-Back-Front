@@ -1,0 +1,346 @@
+<html xmlns="http://predictif.com">
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>TP 3IF Ajax</title>
+    <meta name="author" content="">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <!--<script type="text/javascript" src="partieJavascript.js"></script>-->
+
+</head>
+
+<body>
+    <style>
+
+        div.a{
+            text-align:center;
+        }
+
+        div.ecriture{
+            color: #78448c;
+        }
+
+        #champNom {
+                text-align: center;
+                color: white;
+                background-color: #78448c;
+                box-sizing: border-box;
+                border: 0px;
+                border-radius: 7px;
+                height: 40px;
+                width: 200px;
+                transition: width 0.4s ease-in-out;
+            }
+        #champPrenom {
+                text-align: center;
+                color: white;
+                background-color: #78448c;
+                box-sizing: border-box;
+                border: 0px;
+                border-radius: 7px;
+                height: 40px;
+                width: 200px;
+                transition: width 0.4s ease-in-out;
+            }
+        #champNaissance {
+                text-align: center;
+                color: white;
+                background-color: #78448c;
+                box-sizing: border-box;
+                border: 0px;
+                border-radius: 7px;
+                height: 40px;
+                width: 200px;
+                transition: width 0.4s ease-in-out;
+            }
+        #champAdresse {
+                text-align: center;
+                color: white;
+                background-color: #78448c;
+                box-sizing: border-box;
+                border: 0px;
+                border-radius: 7px;
+                height: 40px;
+                width: 200px;
+                transition: width 0.4s ease-in-out;
+            }
+        #champTelephone {
+                text-align: center;
+                color: white;
+                background-color: #78448c;
+                box-sizing: border-box;
+                border: 0px;
+                border-radius: 7px;
+                height: 40px;
+                width: 200px;
+                transition: width 0.4s ease-in-out;
+            }
+        #champMail {
+                text-align: center;
+                color: white;
+                background-color: #78448c;
+                box-sizing: border-box;
+                border: 0px;
+                border-radius: 7px;
+                height: 40px;
+                width: 200px;
+                transition: width 0.4s ease-in-out;
+            }
+        #champMdp {
+                text-align: center;
+                color: white;
+                background-color: #78448c;
+                box-sizing: border-box;
+                border: 0px;
+                border-radius: 7px;
+                height: 40px;
+                width: 200px;
+                transition: width 0.4s ease-in-out;
+            }
+
+        #no {
+                font-size: 12px;
+                color: #a462bf;
+                font-size: 10px;
+                margin-right:175px;
+                margin-bottom: 0px;
+            }
+
+        #preno {
+                font-size: 12px;
+                color: #a462bf;
+                font-size: 10px;
+                margin-right:170px;
+                margin-bottom: 0px;
+            }
+
+        #naissanc {
+                font-size: 12px;
+                color: #a462bf;
+                font-size: 10px;
+                margin-right:50px;
+                margin-bottom: 0px;
+            }
+
+        #adress {
+                font-size: 12px;
+                color: #a462bf;
+                font-size: 10px;
+                margin-right:25px;
+                margin-bottom: 0px;
+            }
+
+        #telephon {
+                font-size: 12px;
+                color: #a462bf;
+                font-size: 10px;
+                margin-right:105px;
+                margin-bottom: 0px;
+            }
+
+        #emai {
+                font-size: 12px;
+                color: #a462bf;
+                font-size: 10px;
+                margin-right:175px;
+                margin-bottom: 0px;
+            }
+
+        #md {
+                font-size: 12px;
+                color: #a462bf;
+                font-size: 10px;
+                margin-right:140px;
+                margin-bottom: 0px;
+            }
+        #bouton-inscription {
+                background-color: #a462bf;
+                height: 40px;
+                width: 200px;
+                border: 0px;
+                border-radius: 7px;
+                cursor:pointer;
+                color: white;
+            }
+        #conditio{
+            font-size: 12px;
+            color: #a462bf;
+            font-size: 10px;
+            margin-right:0px;
+            margin-bottom: 0px;
+            }    
+        #conditions{
+            margin-top:0px;
+            margin-bottom: 0px;
+            margin-left: 50px;
+            margin-right: 0px;
+            } 
+        #utilisations{
+            font-size: 12px;
+            color: #a462bf;
+            font-size: 10px;
+            margin-right:0px;
+            margin-bottom: 0px;
+            }      
+        h2 {
+              color: black;
+              margin-left: 40px;
+            }
+
+
+    </style>
+    
+
+        <div id="header">
+            <p id="logoP" onClick="window.location.href='index.html'">
+                <span id="logo">predict'if</span>
+            </p>
+            <div id="histoire">
+                <button onClick="window.location.href='index.html#notreHistoire'" id="hist">Notre histoire</button>
+                <button onClick="window.location.href='index.html#NosMediums'" id="med">Nos mediums</button>
+            </div>
+                <button id="inscription" onClick="window.location.href='inscriptionClient.html'">S'inscrire</button>
+                <button id="connexion" onClick="window.location.href='login.html'">Se connecter</button>
+        </div>
+        <div class = "a">
+            <h1> S'inscrire </h1>
+
+            <br />
+                    <br/>
+            <br />
+                    <br/>
+
+                <div class = "ecriture"> Deja inscrit sur PredictIF ?
+                <a href = "login.html"> Se connecter </a>
+                </div>
+
+
+            <br />
+                    <br/>
+            <p id="no"> Nom </p>
+            <input name="nom" type="nom" id="champNom"/>
+
+            <p id="preno"> Prenom </p>
+            <input name="prenom" type="prenom" id="champPrenom"/>
+
+            <p id="naissanc"> Date de naissance (DD/MM/YYYY) </p>
+            <input name="dateNaissance" type="dateNaissance" id="champNaissance"/>
+
+            <p id="adress"> Adresse(Numero, Rue, Code Postale, Ville) </p>
+            <input name="adresse" type="adresse" id="champAdresse"/>
+
+            <p id="telephon"> Numero de Telephone </p>
+            <input name="telephone" type="telephone" id="champTelephone"/>
+
+            <p id="emai"> Email </p>
+            <input name="mail" type="mail" id="champMail"/>
+
+            <p id="md"> Mot de Passe </p>
+            <input name="mdp" type="mdp" id="champMdp"/>
+
+            <p>
+                <input type="checkbox" id="conditions" name="conditions" value="conditions">
+                <label for="conditions" id="conditio">Acceptez-vous les</label>
+                <a href = "" id="utilisations"> Conditions Generales d'Utilisations </a>
+            </p>
+            <button id="bouton-inscription" onClick="window.location.href='index.html'">S'inscrire</button>
+            <br><br><br><br>
+            <br>
+            <br>
+        </div>  
+    
+    
+        <div id="footer">
+            <br/><br/>
+            <hr id= "ligne">
+            <p style="position:relative;">
+                <label id="logoBas">predict'if</label>
+                <div id="contact">
+                    <p>126 Rue Jean Mace</p>
+                    <label>0464511725</label>
+                    <p>Reseaux sociaux :</p>
+                </div>
+                
+                <br/>
+                <hr id= "ligne">
+                <p>
+                    <label style="cursor:pointer; margin-left:300px;" onclick="window.location.href='index.html#notreHistoire'">NOTRE HISTOIRE</label>
+                    <label style="margin-left:75px;">CONTACTEZ-NOUS</label>
+                    <label style="margin-left:75px;">POLITIQUE DE CONFIDENTIALITE</label>
+                    <label style="margin-left:100px;">CGU</label>
+
+                </p>
+            </div>
+    
+
+        <script>
+            $(document).ready( function () {
+                $('#bouton-inscription').on( 'click', function () { // Fonction appelée lors du clic sur le bouton
+
+                    console.log("clic sur le bouton d'inscription"); // LOG dans Console Javascript
+                    $('#notification').html("Inscription..."); // Message pour le paragraphe de notification
+
+                    // Récupération de la valeur des champs du formulaire
+                    var champNom = $('#champNom').val();
+                    var champPrenom = $('#champPrenom').val();
+                    var champNaissance = $('#champNaissance').val();
+                    var champAdresse = $('#champAdresse').val();
+                    var champTelephone = $('#champTelephone').val();
+                    var champMail = $('#champMail').val();
+                    var champMdp = $('#champMdp').val();
+
+                    // Appel AJAX
+                    $.ajax({
+                        url: './Servlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'inscription',
+                            nom: champNom,
+                            prenom: champPrenom,
+                            adresse: champAdresse,
+                            naissance: champNaissance,
+                            telephone: champTelephone,
+                            mail: champMail,
+                            mdp: champMdp
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        console.log('Response',response); // LOG dans Console Javascript
+                        if (response.inscription === "Succès de l'inscription") {
+                            //$('#notification').html("Connexion de " + response.utilisateur.nom + " " + response.utilisateur.prenom + " (ID "+ response.utilisateur.id +")");  // Message pour le paragraphe de notification
+                            // TODO: afficher les informations du client dans la notification
+                            $('#notification').html("Inscrit");
+                            // Exemple: Connexion de Ada Lovelace (ID 1)
+                        }
+                        else {
+                            //$('#notification').html("Erreur de Connexion"); // Message pour le paragraphe de notification
+                            $('#notification').html("Erreur inscription");
+                        }
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+
+                    });
+                });
+            });
+        </script>
+    
+        
+        
+       
+		
+
+
+
+
+
+
+</body>
+
+</html>

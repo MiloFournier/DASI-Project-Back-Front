@@ -1,0 +1,446 @@
+<html xmlns="http://predictif.com">
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>TP 3IF Ajax</title>
+    <meta name="author" content="">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <!--<script type="text/javascript" src="partieJavascript.js"></script>-->
+
+</head>
+
+<body>
+    <style>
+     #bConsultation {
+        background-color: #9873B8;
+        width: 400px;
+        height: 60px;
+        position: relative;
+        margin-left: 100px;
+        border-radius: 15px;
+        min-width: 300px;
+        margin-left: 550px;
+        top: -500px;
+    }
+    #lastConsultation {
+        background-color: #EBCEF9;
+        width: 400px;
+        height: 60px;
+        position: relative;
+        margin-left: 100px;
+        border-radius: 15px;
+        min-width: 300px;
+        top: 20px;
+    }
+</style>
+
+<div id="header">
+    <p id="logoP" onClick="window.location.href='index.html'">
+        <span id="logo">predict'if</span>
+    </p>
+    <div id="histoire">
+        <button onClick="window.location.href='index.html#notreHistoire'" id="hist">Notre histoire</button>
+        <button onClick="window.location.href='index.html#NosMediums'" id="med">Nos mediums</button>
+    </div>
+        <!--
+        <button id="inscription" onClick="window.location.href='inscriptionClient.html'">S'inscrire</button>
+        <button id="connexion" onClick="window.location.href='login.html'">Se connecter</button>
+    -->
+</div>
+
+<div id="accueil">
+
+</div>
+
+<div id="prochaineConsultation">
+    <div id="topMedium">
+
+    </div>
+
+    <div id="consultation">
+
+    </div>
+    <div id="profilAstral">
+
+    </div>
+</div>
+
+<hr><br>
+
+<div id="apresConsultation">
+    <div id="SaisirCommentaire" style="text-align: center;">
+        <input type="text" id="commentaire" size="40" placeholder="Entrez votre commentaire" />
+        <button id="SaisirCommentaireButton" style="background-color: #a462bf; color: white; border-radius: 12px; border: none; cursor: pointer; height: 30px; width: 175px;">Saisir le commentaire</button>
+    </div>
+    <br><br><br>
+    <div id="Valider" style="text-align: center;">
+        <button id="ValiderConsultation" style="background-color: #a462bf; color: white; border-radius: 12px; border: none; cursor: pointer; height: 30px; width: 175px;">Valider la consultation</button>
+    </div>
+    <br><br><br><br><br>
+</div>
+
+
+
+
+<br><br><br><br><br><br><br>
+
+
+<div id="nbConsultationMedium">
+    <div id="nbConsultation">
+        <h3>Nombre de consultations par mediums : </h3>
+    </div>
+    <br><br><br>
+    <div id="top5Medium">
+        <h3>Top 5 des mediums du site : </h3>
+    </div>
+    <br><br><br>
+    <div id="nbEmploye">
+        <h3>Nombre de consultations par employe : </h3>
+    </div>
+    <br><br><br>
+</div>
+
+
+<div id="footer">
+    <br/><br/>
+    <hr id= "ligne">
+    <p style="position:relative;">
+        <label id="logoBas">predict'if</label>
+        <div id="contact">
+            <p>126 Rue Jean Mace</p>
+            <label>0464511725</label>
+            <p>Reseaux sociaux :</p>
+        </div>
+
+        <br/>
+        <hr id= "ligne">
+        <p>
+            <label style="cursor:pointer; margin-left:300px;" onclick="window.location.href='#notreHistoire'">NOTRE HISTOIRE</label>
+            <label style="margin-left:75px;">CONTACTEZ-NOUS</label>
+            <label style="margin-left:75px;">POLITIQUE DE CONFIDENTIALITE</label>
+            <label style="margin-left:100px;">CGU</label>
+        </p>
+</div> 
+
+    <script>
+        $(document).ready( function () {
+            $.ajax({
+                url: './Servlet',
+                method: 'POST',
+                data: {
+                    todo: 'prochaineConsult'
+                },
+                dataType: 'json'
+            })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        console.log('Response',response); // LOG dans Console Javascript
+                        if (response.etat === "true") {
+                            //$('#notification').html("Connexion de " + response.utilisateur.nom + " " + response.utilisateur.prenom + " (ID "+ response.utilisateur.id +")");  // Message pour le paragraphe de notification
+                            // TODO: afficher les informations du client dans la notification
+                            let historiqueConsultations = response.historiqueConsultations;
+                            
+                            
+
+                            
+                            $('#topMedium').append(
+                                '<div id="lastConsultation" style="width: 700px; height: 150px; text-align: center;">' +
+                                '<p id="NomConsultation" style="color: #22092c; text-align: center; font: small-caps 20px/1 sans-serif;"> Avec ' +
+                                response.nameClient +
+                                ' en tant que ' +
+                                response.nameMedium +
+                                '</p>' +
+                                '<p id="DateConsultation" style="color: #22092c; text-align: center;"> Pour le ' +
+                                response.date +
+                                '</p>' +
+                                '</div>'
+                                );
+                            
+                            $.each(historiqueConsultations, function(index, consultation) {
+
+
+                                $('#consultation').append(
+                                    '<div id="lastConsultation">' +
+                                    '<p id="NomConsultation" style="color: #22092c; text-align: center; font: small-caps 20px/1 sans-serif;">' +
+                                    consultation.denominationMedium +
+                                    '</p>' +
+                                    '<p id="DateConsultation" style="style="color: #22092c; text-align: center;">' +
+                                    consultation.Date +
+                                    '</p>' +
+                                    '</div>'
+                                    );
+                            });
+                            
+
+                            
+                            $('#profilAstral').append(
+                                '<div id="bConsultation">' +
+                                '<p id="NomConsultation" style="color: #22092c; text-align: center; font: small-caps 20px/1 sans-serif;"> Signe du Zodiaque: ' +
+                                response.zodiac +
+                                '</p>' +
+                                '</div>' +
+                                '<div id="bConsultation">' +
+                                '<p id="NomConsultation" style="color: #22092c; text-align: center; font: small-caps 20px/1 sans-serif;"> Signe Astrologique Chinois: ' +
+                                response.chinois +
+                                '</p>' +
+                                '</div>' +
+                                '<div id="bConsultation">' +
+                                '<p id="NomConsultation" style="color: #22092c; text-align: center; font: small-caps 20px/1 sans-serif;">Couleur Porte-Bonheur: ' +
+                                response.couleur +
+                                '</p>' +
+                                '</div>' +
+                                '<div id="bConsultation">' +
+                                '<p id="NomConsultation" style="color: #22092c; text-align: center; font: small-caps 20px/1 sans-serif;">Animal Totem: ' +
+                                response.animal +
+                                '</p>' +
+                                '</div>'
+                                );
+                            // Exemple: Connexion de Ada Lovelace (ID 1)
+                        }
+                        else {
+                            //$('#notification').html("Erreur de Connexion"); // Message pour le paragraphe de notification
+                            $('#denominationMedium').html("Erreur");
+                        }
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+
+                    });
+                    
+                    $.ajax({
+                        url: './Servlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'statistiques',
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appel�e en cas d'appel AJAX r�ussi
+                        console.log('Response',response); // LOG dans Console Javascript
+                        if (response.etat === "true") {
+                            //$('#notification').html("Connexion de " + response.utilisateur.nom + " " + response.utilisateur.prenom + " (ID "+ response.utilisateur.id +")");  // Message pour le paragraphe de notification
+                            // TODO: afficher les informations du client dans la notification
+                            let nbConsul = response.nbConsul;
+                            
+                            
+
+                            
+                            $.each(nbConsul, function(index, consultation) {
+
+                                $('#nbConsultation').append(
+                                    '<div id="lastConsultation" style="width: 300px; height: 70px; text-align: center;">' +
+                                    '<p id="NomConsultation" style="color: #22092c; text-align: center; font: small-caps 20px/1 sans-serif;">' +
+                                    consultation.denomination +
+                                    '</p>' +
+                                    '<p id="DateConsultation" style="color: #22092c; text-align: center;">' +
+                                    consultation.nombre +
+                                    '</p>' +
+                                    '</div>'
+                                    );
+                            });
+
+                            let top5 = response.top5;
+                            
+                            
+                            
+                            $.each(top5, function(index, consultation) {
+
+                                $('#top5Medium').append(
+                                    '<div id="lastConsultation" style="width: 300px; height: 70px; text-align: center;">' +
+                                    '<p id="NomConsultation" style="color: #22092c; text-align: center; font: small-caps 20px/1 sans-serif;">' +
+                                    consultation.denomination +
+                                    '</p>' +
+                                    '<p id="DateConsultation" style="color: #22092c; text-align: center;">' +
+                                    consultation.nombre +
+                                    '</p>' +
+                                    '</div>' 
+                                    );
+                            });
+
+                            let nbMedium = response.nbMedium;
+                            
+                            
+                            
+                            $.each(nbMedium, function(index, consultation) {
+
+                                $('#nbEmploye').append(
+                                    '<div id="lastConsultation" style="width: 300px; height: 70px; text-align: center;">' +
+                                    '<p id="NomConsultation" style="color: #22092c; text-align: center; font: small-caps 20px/1 sans-serif;">' +
+                                    consultation.prenom +
+                                    '</p>' +
+                                    '<p id="DateConsultation" style="color: #22092c; text-align: center;">' +
+                                    consultation.nombre +
+                                    '</p>' +
+                                    '</div>' 
+                                    );
+                            });
+                            
+                            $('#accueil').append(
+                                '<p id=logoAccueil> Bonjour ' +
+                                response.name +
+                                '</p>'
+                                );
+
+                            
+
+                            // Exemple: Connexion de Ada Lovelace (ID 1)
+                        }
+                        else {
+                            //$('#notification').html("Erreur de Connexion"); // Message pour le paragraphe de notification
+                            $('#nbEmploye').html("Erreur");
+                        }
+                    })
+                    .fail( function (error) { // Fonction appel�e en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appel�e
+
+                    });
+                    
+                    
+                    $('#SaisirCommentaireButton').on( 'click', function () { // Fonction appel�e lors du clic sur le bouton
+
+                    console.log("clic sur le bouton de SaisirCommentaire"); // LOG dans Console Javascript
+
+                    var Champcommentaire = $('#commentaire').val();
+
+                    // Appel AJAX
+                    $.ajax({
+                        url: './Servlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'commentaire',
+                            commentaire : Champcommentaire
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appel�e en cas d'appel AJAX r�ussi
+                        console.log('Response',response); // LOG dans Console Javascript
+                        if (response.etat === "true") {
+                            //$('#notification').html("Connexion de " + response.utilisateur.nom + " " + response.utilisateur.prenom + " (ID "+ response.utilisateur.id +")");  // Message pour le paragraphe de notification
+                            // TODO: afficher les informations du client dans la notification
+                            $('#SaisirCommentaire').empty();
+
+                            // Exemple: Connexion de Ada Lovelace (ID 1)
+                        }
+                        else {
+                            //$('#notification').html("Erreur de Connexion"); // Message pour le paragraphe de notification
+                            $('#Valider').html("Erreur connexion");
+                        }
+                    })
+                    .fail( function (error) { // Fonction appel�e en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appel�e
+
+                    }); 
+                    
+                }); 
+
+
+                 $('#ValiderConsultation').on( 'click', function () { // Fonction appel�e lors du clic sur le bouton
+
+                    console.log("clic sur le bouton de ValiderConsultation"); // LOG dans Console Javascript
+
+                    // Appel AJAX
+                    $.ajax({
+                        url: './Servlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'validerConsultation'
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appel�e en cas d'appel AJAX r�ussi
+                        console.log('Response',response); // LOG dans Console Javascript
+                        if (response.etat === "true") {
+                            //$('#notification').html("Connexion de " + response.utilisateur.nom + " " + response.utilisateur.prenom + " (ID "+ response.utilisateur.id +")");  // Message pour le paragraphe de notification
+                            // TODO: afficher les informations du client dans la notification
+                            $('#apresConsultation').empty();
+
+                            $('#prochaineConsultation').empty(); 
+                            
+                            $('#panneInspiration').empty();  
+                            // Exemple: Connexion de Ada Lovelace (ID 1)
+                        }
+                        else {
+                            //$('#notification').html("Erreur de Connexion"); // Message pour le paragraphe de notification
+                            $('#Valider').html("Erreur connexion");
+                        }
+                    })
+                    .fail( function (error) { // Fonction appel�e en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appel�e
+
+                    }); 
+                });
+
+
+
+                $('#AvoirPrediction').on( 'click', function () { // Fonction appel�e lors du clic sur le bouton
+
+                    console.log("clic sur le bouton de AvoirPrediction"); // LOG dans Console Javascript
+
+                    var Champamour = $('#amour').val();
+                    var Champsante = $('#sante').val();
+                    var Champtravail = $('#travail').val();
+
+                    // Appel AJAX
+                    $.ajax({
+                        url: './Servlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'AvoirPrediction',
+                            amour : Champamour,
+                            sante : Champsante,
+                            travail : Champtravail
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appel�e en cas d'appel AJAX r�ussi
+                        console.log('Response',response); // LOG dans Console Javascript
+                        if (response.etat === "true") {
+                            //$('#notification').html("Connexion de " + response.utilisateur.nom + " " + response.utilisateur.prenom + " (ID "+ response.utilisateur.id +")");  // Message pour le paragraphe de notification
+                            // TODO: afficher les informations du client dans la notification
+                            let predictions = response.predictions;
+                            
+                            $.each(predictions, function(index, prediction) {
+
+                                $('#predictionGenere').append(
+                                    '<p style="color: #22092c; text-align: center; font: small-caps 20px/1 sans-serif;">' +
+                                    prediction.texte+
+                                    '</p>' 
+                                    );
+                            });
+                            // Exemple: Connexion de Ada Lovelace (ID 1)
+                        }
+                        else {
+                            //$('#notification').html("Erreur de Connexion"); // Message pour le paragraphe de notification
+                            $('#predictionGenere').html("Erreur connexion");
+                        }
+                    })
+                    .fail( function (error) { // Fonction appel�e en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appel�e
+
+                    }); 
+                });
+
+            });
+        </script>
+
+    </body>
+
+    </html>
+
+

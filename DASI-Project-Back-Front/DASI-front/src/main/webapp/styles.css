@@ -1,0 +1,249 @@
+html, body {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    height: 100%;
+}
+#header {
+  background-color: black;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+#logoP {
+  margin: 0;
+  cursor: pointer;
+}
+
+#logo {
+  color: rgba(255, 255, 255, 0.377);
+  font: small-caps 18px/1 sans-serif;
+}
+
+#histoire {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+#hist,
+#med {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.377);
+  font: small-caps 12px/1 sans-serif;
+}
+
+#inscription,
+#connexion {
+  background-color: #22092c;
+  height: 30px;
+  width: 125px;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.377);
+  margin-left: 10px;
+  margin-top: 10px;
+  float: right;
+}
+#connexion {
+    background-color: #a462bf;
+    color: white;
+}
+#accueil {
+  margin-top: -80px;
+  background-image: url('https://images4.alphacoders.com/100/thumb-1920-1001393.jpg');
+  margin-left: -100px;
+  margin-right: -100px;
+  margin-bottom: 0px;
+  height: calc(100vh + 80px);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  z-index: -1;
+}
+#accueil p {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+#logoAccueil {
+    color: white;
+    text-align:center;
+    font: small-caps 100px/1 sans-serif;
+}
+#footer {
+    color: white;
+    background-color: black;
+    height: 300px;
+    margin: -25px;
+    margin-bottom: -100px;
+}
+#logoBas {
+    color: rgba(255, 255, 255, 0.377);
+    padding-top: 35px;
+    margin-left: 300px;
+    float:left;
+    font: small-caps 50px/1 sans-serif;
+    height:  100px;
+}
+#ligne {
+    color:white;
+    width: 80vw;
+} 
+#contact {
+    color: white;
+    margin-top: 60px;
+    position:  relative;
+    left: 20%;
+}
+.conteneur {
+    display: grid;
+    grid-template-columns: 350px 350px;
+    width: 700px;
+    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+.box {
+  height: 300px;
+  place-self: center;
+  background-color: #714288;
+  overflow:hidden;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.box img {
+  background-image: url('mec costard.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: 115%;
+  padding: 0px;
+}
+#intro {
+  white-space: pre-line;
+}
+#contain-intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 700px;
+  margin: 0 auto;
+}
+#contain-intro p {
+  text-align: left;
+}
+#bas {
+  display: flex;
+  justify-content: center;
+}
+#bas label {
+  margin-left: 75px;
+}
+#NomConsultation {
+  color: #22092c;
+  text-align: center;
+  font: small-caps 20px/1 sans-serif;
+}
+#bestconsultation {
+  background-color: #c798da;
+  width: 600px;
+  position: relative;
+  margin: 0 auto;
+  border-radius: 15px;
+}
+#consultation {
+  height: 500px;
+}
+#titreConsultation {
+  color: #22092c;
+  text-align: center;
+  font: small-caps 30px/1 sans-serif;
+}
+#DateConsultation {
+  color: #22092c;
+  text-align: center;
+}
+#top-container {
+  background-color: #c798da;
+  width: 250px;
+  position: relative;
+  margin: 1em auto;
+  border-radius: 15px;
+  flex: 0 0 200px;
+}
+#topName {
+  color: #22092c;
+  text-align: center;
+  font: small-caps 20px/1 sans-serif;
+}
+#topNb {
+  color: #22092c;
+  text-align: center;
+}
+#topMedium {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  padding: 40px calc((100% - (350px * 3)) / 2);
+}
+#vosMeds {
+  font: small-caps 35px/1 sans-serif;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+#commentaire {
+  text-align: center;
+  color: white;
+  background-color: #78448c;
+  box-sizing: border-box;
+  border: 0px;
+  border-radius: 7px;
+  height: 40px;
+  width: 400px;
+  transition: width 0.4s ease-in-out;
+}
+#commentaire:focus {
+  background-color: #a462bf;
+  width: 500px;
+}
+#txt {
+  text-align: center;
+  color: white;
+  background-color: #78448c;
+  box-sizing: border-box;
+  border: 0px;
+  border-radius: 7px;
+  height: 40px;
+  width: 250px;
+  transition: width 0.4s ease-in-out;
+}
+#txt:focus {
+  background-color: #a462bf;
+  width: 350px;
+}
+
+
+
+
+
+
+

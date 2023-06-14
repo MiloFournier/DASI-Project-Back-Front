@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Predict'IF</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div id="header">
+        <p id="logoP" onClick="window.location.href='index.html'">
+            <span id="logo">predict'if</span>
+        </p>
+        <div id="histoire">
+            <button onClick="window.location.href='#notreHistoire'" id="hist">Notre histoire</button>
+            <button onClick="window.location.href='#NosMediums'" id="med">Nos mediums</button>
+        </div>
+        <button id="inscription" onClick="window.location.href='inscriptionClient.html'">S'inscrire</button>
+        <button id="connexion" onClick="window.location.href='login.html'">Se connecter</button>
+    </div>
+    
+    <div id="accueil">
+        <p id=logoAccueil>Predict'IF</p>
+    </div>
+    
+    <div id="notreHistoire" style="background: linear-gradient(to bottom, white 65%, #391A51 65%);">
+        <h3 style="margin-left: 50px;">Notre Histoire</h3>
+        <div id="contain-intro">
+            <p id="intro">L'histoire de Predictif remonte à plusieurs années, lorsque notre fondateur, Arven, a rencontré une médium qui lui a donné une prédiction qui a changé sa vie.
+
+            La médium lui a dit qu'il allel-bientôt rencontrer l'amour de sa vie, et c'est exactement ce qui s'est produit peu de temps après. Fasciné par le pouvoir des prédictions, Arven a commencé à chercher des moyens de partager cette expérience avec le monde.</p>
+        </div>
+        <br>
+        <div class="conteneur">
+            <div class="box">
+                <img src="mec costard.jpg">
+            </div>
+            <div class="box">
+                <p style="margin: 0px;">Predict'if est un cabinet de voyance par téléphone. Ses mediums sont spirites, cartomanciens, ou astroloques. Reconnus internationalement, ils ont été sélectionnés avec la plus grande rigueur, et sont réunis pour travailler avec précision honnêteté et sérieux dans leur spécialité respective. Leurs prédictions personnalisées pour chaque client répondent à toutes les questions d'ordre sentimental, professionnel ou psychologique dans le plus strict respect de la déontologie.
+                </p>
+            </div>
+            <div class="box">
+                <p style="margin: 0px;">Nous avons recruté des médiums talentueux et expérimentés qui peuvent offrir des prévisions précises et personnalisées pour aider nos clients à naviguer dans les eaux troubles de l'amour.
+
+                    Chez Predictif, nous croyons que tout le monde mérite l'amour véritable, et nous sommes là pour aider nos clients à trouver le leur.
+                </p>
+            </div>
+            <div class="box">
+                <img src="couple doux.jpg">
+            </div>
+        </div>
+        <br><br><br><br><br><br><br><br>
+    </div>
+
+    <div id="NosMediums" style="background: linear-gradient(to bottom, #391A51, black); color: white;">
+        <h3 style="margin-left: 50px; margin-top: 0px;">Nos Mediums</h3>
+        <br>
+        <br>
+        <br>
+        
+        <button id="gauche" style="display: flex; margin: 0 auto; background-color: #a462bf;
+        color: white; border-radius: 12px; border: none;
+        cursor: pointer;">Trouver un autre médium aléatoirement</button>
+        <br><br>
+
+
+        <div id="carte" style="background: linear-gradient(to bottom, #DDC3E7, #A07FB2); width: 500px; margin: 0 auto; height: 250px; border-radius: 50px; color: black;">
+            <p style="text-align:center; padding-top: 75px;" id="denominationMedium">Denomination du medium en cours...</p>
+            <p style="text-align:center;" id="genre">Genre du medium en cours...</p>
+            <p style="text-align:center;" id="pres">Présentation du medium en cours...</p>
+        </div>
+        <br>
+        <div id="contain-intro">
+            <p>Vous cherchez des réponses à vos questions les plus profondes ? Nos médiums talentueux, cartomanciens, spirites et astrologues sont là pour vous aider ! Commandez dès maintenant une prestation personnalisée et découvrez les réponses que vous cherchez depuis si longtemps. Ne laissez pas les doutes et les incertitudes vous envahir, laissez nos médiums vous guider vers un avenir plus lumineux et plus clair.
+            </p>
+        </div>
+        <br><br>
+        <button id="rdv" onClick="window.location.href='login.html'" style="display: flex; margin: 0 auto; background-color: #a462bf;
+        color: white; border-radius: 12px; border: none;
+        cursor: pointer;" >Prendre un rendez-vous</button>
+
+
+
+        <br><br><br><br><br><br><br>
+        
+        
+        
+    </div>
+    
+    
+    <div id="footer">
+        <br/><br/>
+        <hr id= "ligne">
+        <p style="position:relative;">
+            <label id="logoBas">predict'if</label>
+            <div id="contact">
+                <p>126 Rue Jean Mace</p>
+                <label>0464511725</label>
+                <p id ="rs">Reseaux sociaux :</p>
+            </div>
+            
+            <br/>
+            <hr id= "ligne">
+            <p>
+                <div id="bas">
+                    <label style="cursor:pointer; margin-left:300px;" onclick="window.location.href='#notreHistoire'">NOTRE HISTOIRE</label>
+                    <label style="margin-left:75px;">CONTACTEZ-NOUS</label>
+                    <label style="margin-left:75px;">POLITIQUE DE CONFIDENTIALITE</label>
+                    <label style="margin-left:75px;">CGU</label>
+                </div>
+
+            </p>
+        </div>
+        
+        <script>
+            $(document).ready( function () {
+                
+                $('#prenomMedium').html("...");
+                
+                $.ajax({
+                    url: './Servlet',
+                    method: 'POST',
+                    data: {
+                        todo: 'carrousel'
+                    },
+                    dataType: 'json'
+                })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        console.log('Response',response); // LOG dans Console Javascript
+                        if (response.etat === "true") {
+                            //$('#notification').html("Connexion de " + response.utilisateur.nom + " " + response.utilisateur.prenom + " (ID "+ response.utilisateur.id +")");  // Message pour le paragraphe de notification
+                            // TODO: afficher les informations du client dans la notification
+                            $('#denominationMedium').html(response.denominationMedium);
+                            $('#genre').html(response.genre);
+                            $('#pres').html(response.pres);
+                            // Exemple: Connexion de Ada Lovelace (ID 1)
+                        }
+                        else {
+                            //$('#notification').html("Erreur de Connexion"); // Message pour le paragraphe de notification
+                            $('#denominationMedium').html("Erreur");
+                        }
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+
+                    });
+                    
+                    $('#gauche').on( 'click', function () {
+                        $('#prenomMedium').html("...");
+
+                        $.ajax({
+                            url: './Servlet',
+                            method: 'POST',
+                            data: {
+                                todo: 'carrousel'
+                            },
+                            dataType: 'json'
+                        })
+                        .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                            console.log('Response',response); // LOG dans Console Javascript
+                            if (response.etat === "true") {
+                                //$('#notification').html("Connexion de " + response.utilisateur.nom + " " + response.utilisateur.prenom + " (ID "+ response.utilisateur.id +")");  // Message pour le paragraphe de notification
+                                // TODO: afficher les informations du client dans la notification
+                                $('#denominationMedium').html(response.denominationMedium);
+                                $('#genre').html(response.genre);
+                                $('#pres').html(response.pres);
+                                // Exemple: Connexion de Ada Lovelace (ID 1)
+                            }
+                            else {
+                                //$('#notification').html("Erreur de Connexion"); // Message pour le paragraphe de notification
+                                $('#denominationMedium').html("Erreur");
+                            }
+                        })
+                        .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                            console.log('Error',error); // LOG dans Console Javascript
+                            alert("Erreur lors de l'appel AJAX");
+                        })
+                        .always( function () { // Fonction toujours appelée
+
+                        });
+                    });
+                });
+            </script>
+            
+            
+        </body>
+        </html>
